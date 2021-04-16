@@ -1,6 +1,6 @@
 // Average using a for loop
 const average = () => {
-    let array = [1, 5, 9, 5, 3]
+    const array = [1, 5, 9, 5, 3]
     let total = 0;
     for (let i=0; i < array.length; i++){
         total = total + array[i];
@@ -12,9 +12,9 @@ console.log(average());
 
 // Look for the smallest number
 const calculate = () => {
-    let numbers = [4, 2, 5, 3, 6, 1, 4];
+    const numbers = [4, 2, 5, 3, 6, 1, 4];
     let smallest = numbers[0];
-    for (let i=0; i < numbers.length; i++){
+    for (let i=1; i < numbers.length; i++){
         if (numbers[i] < smallest) {
             smallest = numbers[i];
         }
@@ -26,67 +26,57 @@ console.log(calculate());
 
 //Return Key of the biggest number
 const test = () => {
-let numbers = {
+  const numbers = {
     A: 5,
     B: 10,
     C: 23,
-    D: 8
+    D: 8,
+    E: 23
   }
-    let biggest = 0;
-for (const [key, value] of Object.entries(numbers)) {
-    if (value > biggest){
-        biggest = value;
+  let resultList = [];
+  for (const entry of Object.entries(numbers)) {
+    if (resultList[0] === undefined) {
+      resultList.push(entry);
+    } else {
+      if (entry[1] > resultList[0][1]) {
+          resultList = [entry];
+      } else if (entry[1] === resultList[0][1]) {
+        resultList.push(entry);
+      }
     }
-}
-for (const [key, value] of Object.entries(numbers)) {
-    if (value === biggest){
-        return key
-    }
-}
+  }
+  return resultList;
 }
 console.log(test());
-
 
 
 // Palindrome check
 const eingabe = 'Erika feuert nur untreue Fakire'
 
-const numberFour = () =>{
-    let palindrome = eingabe.replace(/ /g, '');
-    let split = palindrome.length/2
+const numberFour = () => {
+    let palindrome = eingabe.replaceAll(' ', '').toLowerCase();
     let back = [];
-    let forth= [];
-for (let i=0; i< split; i++ ){
-    forth.push(palindrome[i]);
-}
-for (let i=palindrome.length-1; i > split-1; i-- ){
-    back.push(palindrome[i]);
-}
+    for (let i=palindrome.length-1; i >= 0; i-- ) {
+        back.push(palindrome[i]);
+    }
 
-let checkback = back.join('').toLowerCase();
-let checkforth = forth.join('').toLocaleLowerCase();
-
-if ( checkback === checkforth ) {
-    
-    console.log('Yes, it is!');
-} else {
-    console.log('No it is not!');
-} 
+    if ( back.join('') === palindrome ) {
+      console.log('Yes, it is!');
+    } else {
+      console.log('No it is not!');
+    } 
 }
 numberFour();
 
 
 // Sum it up
 const sum = (number) => {
-    points = [];
-    for (let i = 0; i < number; i++){
-        points[i] = i +1
+    total = 0;
+    for (let i = 1; i <= number; i++){
+        total += i;
     }
-    let summe =  points.reduce((a, b) => a+b);
     
-    console.log(summe)
+    console.log(total)
 
 }
 sum(4);
-
-
